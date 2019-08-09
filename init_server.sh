@@ -18,10 +18,10 @@ then
  echo search download url...
  URL=`wget -qO- https://www.minecraft.net/de-de/download/server | sed -n -e 's/.*href=\"\(https:[\/a-z1-9.]*\)\">minecraft_server.*/\1/p'`
  echo download minecraft-server-$VERSION.jar from $URL
- wget -q --output-document=minecraft_server.jar $URL
+ wget -q --output-document=data/minecraft_server.jar $URL
  echo saved in /data/minecraft_server.jar
  
- echo set eula
+ echo accept eula
  echo eula=true > eula.txt
  
  echo $VERSION > $VERSION_FILE
