@@ -16,7 +16,7 @@ then
  echo doing update $VERSION_INSTALLED to $VERSION
  
  echo search download url...
- URL=`wget -qO- https://www.minecraft.net/de-de/download/server | sed -n -e 's/.*href=\"\(https:[\/a-z1-9.]*\)\">minecraft_server.*/\1/p'`
+ URL=`wget -qO- https://www.minecraft.net/de-de/download/server | sed -n -e 's/.*\"\(https:[\/a-z0-9.]*\.jar\)\".*/\1/p'`
  echo download minecraft-server-$VERSION.jar from $URL
  wget -q --output-document=minecraft_server.jar $URL
  echo saved in /data/minecraft_server.jar
