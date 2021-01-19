@@ -9,7 +9,7 @@ echo search minecraft-server-version...
 VERSION=`wget -qO- https://launchermeta.mojang.com/mc/game/version_manifest.json | sed -n -e 's/.*release\": \"\([1-9.]*\).*/\1/p'`
 echo found minecraft-server-version $VERSION
 
-if [ "$VERSION" == "" ]
+if [ -z "$VERSION" ]
 then
  echo version not available
 elif [ "$VERSION" != "$VERSION_INSTALLED" ]
