@@ -1,4 +1,4 @@
-FROM openjdk:16-jdk
+FROM openjdk:16-jdk-buster
 
 MAINTAINER BlueTooth
 
