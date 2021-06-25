@@ -18,15 +18,20 @@ then
  echo doing update $VERSION_INSTALLED to $VERSION
 
  echo search download url...
- URL=`curl -s https://www.minecraft.net/de-de/download/server | grep -oP 'https:[\/a-z0-9.]*\.jar'`
- echo download minecraft-server-$VERSION.jar from $URL
- wget -q --output-document=minecraft_server.jar $URL
- echo saved in /data/minecraft_server.jar
+ URL=`curl -s https://www.minecraft.net/de-de/download/server | grep -oP 'https:[\/a-z0-9.]*\.jar'` 
+ if [ "$URL" = "" ]
+ then
+  echo url not available
+ else
+  echo download minecraft-server-$VERSION.jar from $URL
+  wget -q --output-document=minecraft_server.jar $URL
+  echo saved in /data/minecraft_server.jar
 
- echo accept eula
- echo eula=true > eula.txt
+  echo accept eula
+  echo eula=true > eula.txt
 
- echo $VERSION > $VERSION_FILE
+  echo $VERSION > $VERSION_FILE
+ fi
 fi
 
 echo start minecraft_server
