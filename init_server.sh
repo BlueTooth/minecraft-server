@@ -18,7 +18,9 @@ then
  echo doing update $VERSION_INSTALLED to $VERSION
 
  echo search download url...
- URL=`curl -s https://www.minecraft.net/de-de/download/server | grep -oP 'https:[\/a-z0-9.]*\.jar'` 
+ MANIFEST_URL=`wget -qO- https://launchermeta.mojang.com/mc/game/version_manifest.json | sed -n -e 's/release\", \"url\": \"\([a-z:/.0-9-]*\).*/\1/p'`
+ JSON_URL=`echo $MANIFEST_URL | sed -n -e 's/.*\"\([a-z:/.0-9-]*\)/\1/p'`
+ URL=`wget -qO- $JSON_URL  | sed -n -e 's/.*\"\([a-z:/.0-9-]*server\.jar\).*/\1/p'`
  if [ "$URL" = "" ]
  then
   echo url not available
