@@ -19,8 +19,10 @@ then
 
  echo search download url...
  MANIFEST_URL=`wget -qO- https://launchermeta.mojang.com/mc/game/version_manifest.json | sed -n -e 's/release\", \"url\": \"\([a-z:/.0-9-]*\).*/\1/p'`
+ echo "mf url = $MANIFEST_URL" 
  JSON_URL=`echo $MANIFEST_URL | sed -n -e 's/.*\"\([a-z:/.0-9-]*\)/\1/p'`
- URL=`wget -qO- $JSON_URL  | sed -n -e 's/.*\"\([a-z:/.0-9-]*server\.jar\).*/\1/p'`
+ echo "j url = $JSON_URL"
+ URL=`wget -qO- $JSON_URL | sed -n -e 's/.*\"\([a-z:/.0-9-]*server\.jar\).*/\1/p'`
  if [ "$URL" = "" ]
  then
   echo url not available
